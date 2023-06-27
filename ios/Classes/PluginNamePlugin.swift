@@ -15,11 +15,11 @@ public class PluginNamePlugin: NSObject, FlutterPlugin {
       if call.method == "getPlatformVersion" {
           result("iOS " + UIDevice.current.systemVersion)
       } else if call.method == "showAlert" {
-          if let arguments = call.arguments as? [String: Any], let userName = arguments["userName"] as? String {
+         // if let arguments = call.arguments as? [String: Any], let userName = arguments["userName"] as? String {
               DispatchQueue.main.async {
-                  self.showSystemWindow(withUserName: userName)
+                  self.showSystemWindow()
               }
-          }
+         // }
       } else if call.method == "closeAlert" {
           DispatchQueue.main.async {
               self.closeSystemWindow()
@@ -27,12 +27,12 @@ public class PluginNamePlugin: NSObject, FlutterPlugin {
       }
 }
 
-    private func showSystemWindow(withUserName userName: String) {
+    private func showSystemWindow() {
         guard alertController == nil else {
             return
         }
 
-        let alert = UIAlertController(title: nil, message: "Llamada con \(userName)", preferredStyle: .alert)
+        let alert = UIAlertController(title: nil, message: "Llamada con ", preferredStyle: .alert)
         alertController = alert
 
         // Apariencia
